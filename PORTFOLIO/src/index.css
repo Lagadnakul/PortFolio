@@ -32,5 +32,52 @@
   }
   body {
     background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: "Inter",sans-serif
+  }
+  .font-serif{
+  font-family: "Playfair Display", serif;
+} 
+}
+
+@layer components{
+  .glass {
+    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  }
+   .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+    backdrop-filter: blur(16px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+  }
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    from{
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(10px);
+    }
+    to{
+      opacity: 1;
+    }
+
+  }
+  @keyframes slow-drift{
+    0%,
+    100% {
+      transform: translate(0, 0);
+    } 25% {
+      transform: translate(20px, -30px);
+    } 50% {
+      transform: translate(-15px, -20px);
+    } 75% {
+      transform: translate(30px, 10px);
+    }
+  }
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
   }
 }

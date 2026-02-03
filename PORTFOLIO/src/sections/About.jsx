@@ -1,5 +1,3 @@
 export const About = () => {
-    return <section>
-        
-    </section>
+    return <section id="about"></section>
 }

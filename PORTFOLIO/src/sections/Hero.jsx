@@ -48,12 +48,26 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="Container mx-auto px-6 pt-32 pb-20 relative z-10">
-        <div className= "grid">
+        <div className= "grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Text Content */}
             <div className= "space-y-8">
                 <div className= "animated-fade-in">
                     <span className= "inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
-                <span className= "w-2 h-2 bg-primary rounded-full"/> Full-Stack Developer • Immersive Web • Interactive Experiences • MERN </span>
+                <span className= "w-2 h-2 bg-primary rounded-full animated-pulse"/> Full-Stack Developer • Immersive Web • Interactive Experiences • MERN </span>
+</div>
+{/* Headline  */}
+<div>
+  <h1>
+    Crafting <span className="text-primary glow-text">immersive</span>
+    <br/>
+   & interactive
+    <br/>
+    <span className="font-serif italic fon-normal text-white">web experiences</span>
+  </h1>
+  <p>Hi. I'm Nakul Lagad - a software engineer specializing in React, 
+    Next.js, and TypeScript. I build scalable, performant web applications 
+    that users love.
+  </p>
 </div>
             </div>
             {/* Right Column - Profile Image  */}

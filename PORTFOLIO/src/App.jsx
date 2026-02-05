@@ -1,11 +1,10 @@
 import { Navbar } from './layout/Navbar.jsx'
-import { Hero } from './Sections/Hero.jsx'
-import { About } from './Sections/About.jsx'
-import { Projects } from './Sections/Projects.jsx'
-import { Contact } from './Sections/Contact.jsx'
-import { Experience } from './Sections/Experience.jsx'
-import { Testimonials } from './Sections/Testimonials.jsx'
-import { Button } from './Components/Button.jsx'
+import { Hero } from './sections/Hero.jsx'
+import { About } from './sections/About.jsx'
+import { Projects } from './sections/Projects.jsx'
+import { Contact } from './sections/Contact.jsx'
+import { Experience } from './sections/Experience.jsx'
+import { Testimonials } from './sections/Testimonials.jsx'
 
 function App() {
   return (
@@ -15,10 +14,9 @@ function App() {
         <Hero />
         <About />
         <Projects />
-        <Contact />
         <Experience />
         <Testimonials />
-        <Button />
+        <Contact />
       </main>
     </div>
   )

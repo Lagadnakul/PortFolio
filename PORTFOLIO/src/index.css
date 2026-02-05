@@ -21,23 +21,20 @@
 
   --color-highlight: #f5a623;
   --color-surface: #1a2329;
-
-
 }
 
 @layer base{
   html {
     scroll-behavior: smooth;
-
   }
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Inter",sans-serif
+    font-family: "Inter", sans-serif;
   }
-  .font-serif{
-  font-family: "Playfair Display", serif;
-} 
+  .font-serif {
+    font-family: "Playfair Display", serif;
+  } 
 }
 
 @layer components{
@@ -46,42 +43,78 @@
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
-   .glass-strong {
-    background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
+  .glass-strong {
+    background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
-   .glow-text{
-    text-shadow: 0 0 30px
-    color-mix(in srgb, var(--color-primary) 50%, transparent);
-   }
+  .glow-text {
+    text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
+  }
 }
 
 @layer utilities {
+  /* Fade in animation */
   @keyframes fade-in {
-    from{
+    from {
       opacity: 0;
       transform: translateY(20px);
       filter: blur(10px);
     }
-    to{
+    to {
       opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
     }
-
   }
-  @keyframes slow-drift{
-    0%,
-    100% {
+  
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
+  }
+
+  /* Slow drift for dots */
+  @keyframes slow-drift {
+    0%, 100% {
       transform: translate(0, 0);
-    } 25% {
+    }
+    25% {
       transform: translate(20px, -30px);
-    } 50% {
+    }
+    50% {
       transform: translate(-15px, -20px);
-    } 75% {
+    }
+    75% {
       transform: translate(30px, 10px);
     }
   }
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out both;
+
+  /* SVG Border draw animation */
+  @keyframes draw-border {
+    0% {
+      stroke-dashoffset: 500;
+    }
+    100% {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @keyframes draw-border-loop {
+    0% {
+      stroke-dashoffset: 500;
+    }
+    50% {
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dashoffset: -500;
+    }
+  }
+
+  .animated-border {
+    animation: draw-border 1s ease-out forwards;
+  }
+
+  .group:hover .animated-border {
+    animation: draw-border-loop 2s ease-in-out infinite;
   }
 }

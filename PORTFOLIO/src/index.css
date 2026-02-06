@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-@theme{
+@theme {
   --color-background: black;
   --color-foreground: white;
 
@@ -23,38 +23,42 @@
   --color-surface: #1a2329;
 }
 
-@layer base{
+@layer base {
   html {
     scroll-behavior: smooth;
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: "Inter", sans-serif;
   }
+
   .font-serif {
     font-family: "Playfair Display", serif;
-  } 
+  }
 }
 
-@layer components{
+@layer components {
   .glass {
     background-color: color-mix(in srgb, var(--color-surface) 50%, transparent);
     backdrop-filter: blur(16px);
     border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   }
+
   .glass-strong {
     background-color: color-mix(in srgb, var(--color-surface) 80%, transparent);
-    backdrop-filter: blur(16px);
-    border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
+    backdrop-filter: blur(24px);
+    border: 1px solid color-mix(in srgb, var(--color-border) 80%, transparent);
   }
+
   .glow-text {
     text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
 }
 
 @layer utilities {
-  /* Fade in animation */
+  /* Fade In Animation */
   @keyframes fade-in {
     from {
       opacity: 0;
@@ -67,12 +71,8 @@
       filter: blur(0);
     }
   }
-  
-  .animate-fade-in {
-    animation: fade-in 0.8s ease-out both;
-  }
 
-  /* Slow drift for dots */
+  /* Slow Drift Animation for Dots */
   @keyframes slow-drift {
     0%, 100% {
       transform: translate(0, 0);
@@ -88,33 +88,51 @@
     }
   }
 
-  /* SVG Border draw animation */
-  @keyframes draw-border {
-    0% {
-      stroke-dashoffset: 500;
-    }
-    100% {
-      stroke-dashoffset: 0;
-    }
-  }
-
+  /* Draw Border Loop Animation - continuous loop */
   @keyframes draw-border-loop {
     0% {
       stroke-dashoffset: 500;
-    }
-    50% {
-      stroke-dashoffset: 0;
     }
     100% {
       stroke-dashoffset: -500;
     }
   }
 
-  .animated-border {
-    animation: draw-border 1s ease-out forwards;
+  /* Animation Classes */
+  .animate-fade-in {
+    animation: fade-in 0.8s ease-out both;
   }
 
-  .group:hover .animated-border {
-    animation: draw-border-loop 2s ease-in-out infinite;
+  /* SVG Path - HIDDEN by default (opacity 0) */
+  .download-cv-path {
+    opacity: 0;
+    stroke-dashoffset: 500;
+  }
+
+  /* SVG Path Animation - ONLY visible and loops on hover */
+  .group:hover .download-cv-path {
+    opacity: 1;
+    animation: draw-border-loop 2s linear infinite;
+  }
+
+  /* Animation Delays */
+  .animation-delay-100 {
+    animation-delay: 100ms;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 200ms;
+  }
+
+  .animation-delay-300 {
+    animation-delay: 300ms;
+  }
+
+  .animation-delay-600 {
+    animation-delay: 600ms;
+  }
+
+  .animation-delay-800 {
+    animation-delay: 800ms;
   }
 }

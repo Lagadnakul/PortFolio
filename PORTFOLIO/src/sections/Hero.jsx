@@ -30,7 +30,7 @@ export const Hero = () => {
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
       </div>
 
       {/* Green Dots */}
@@ -58,8 +58,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Full-Stack Developer
-Immersive Web • Interactive Experiences • MERN
+                Software Engineer • React Specialist
               </span>
             </div>
 
@@ -67,21 +66,23 @@ Immersive Web • Interactive Experiences • MERN
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in">
                 Crafting{" "}
-                <span className="text-primary glow-text">immersive</span>
+                <span className="text-primary glow-text">digital</span>
                 <br />
-                <span className="text-primary glow-text">web experiences</span> with
+                <span className="text-primary glow-text">experiences</span> with
                 <br />
                 <span className="font-serif italic font-normal text-white">
                   precision.
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in">
-               Hi, I’m Nakul Lagad — a full-stack developer working with React, Next.js, and TypeScript. I build interactive, scalable web applications focused on performance and experience.
+                Hi, I'm Pedro Machado — a software engineer specializing in
+                React, Next.js, and TypeScript. I build scalable, performant web
+                applications that users love.
               </p>
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-wrap items-center gap-4 animate-fade-in">
+            <div className="flex flex-wrap items-center gap-4 animate-fade-in animation-delay-300">
               <Button size="lg">
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button } from "../Components/Button";
 import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Github, Linkedin } from "lucide-react";
 
 // Generate dots outside component (runs once on module load)
 const generateDots = () =>
@@ -30,7 +30,7 @@ export const Hero = () => {
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
       </div>
 
       {/* Green Dots */}
@@ -58,7 +58,8 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Software Engineer • React Specialist
+                Full-Stack Developer
+                Immersive Web • Interactive Experiences • MERN
               </span>
             </div>
 
@@ -66,7 +67,7 @@ export const Hero = () => {
             <div className="space-y-4">
               <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in">
                 Crafting{" "}
-                <span className="text-primary glow-text">digital</span>
+                <span className="text-primary glow-text">immersive Web</span>
                 <br />
                 <span className="text-primary glow-text">experiences</span> with
                 <br />
@@ -75,9 +76,7 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in">
-                Hi, I'm Pedro Machado — a software engineer specializing in
-                React, Next.js, and TypeScript. I build scalable, performant web
-                applications that users love.
+                Hi, I’m Nakul Lagad — a full-stack developer working with React, Next.js, and TypeScript. I build interactive, scalable web applications focused on performance and experience.
               </p>
             </div>
 
@@ -88,21 +87,56 @@ export const Hero = () => {
               </Button>
               <AnimatedBorderButton />
             </div>
+
+            {/* Social Links */}
+            <div className="flex items-center gap-4 animate-fade-in animation-delay-300">
+              <span className="text-sm text-muted-foreground">Follow me:</span>
+              {[
+                { icon: Github, href: "https://github.com" },
+                { icon: Linkedin, href: "https://linkedin.com" },
+              ].map((social, idx) => (
+                <a 
+                  key={idx}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <social.icon className="w-5 h-5" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Right Column - Profile Image */}
-          <div className="hidden lg:flex justify-center">
-            <div className="relative">
+          <div className="relative animate-fade-in animation-delay-300">
+            {/* Profile Image */}
+            <div className="relative max-w-md mx-auto">
+              <div className="absolute inset-0
+              rounded-3xl bg-linear-to-br
+              from-primary/30 via transparent
+              to-primary/10 blur-2xl animate-pulse"/>
+
+              
               <img
                 src="/Profile.img.jpeg"
-                alt="Profile"
-                className="w-80 h-80 object-cover rounded-full border-4 border-primary/20"
+                alt="Nakul Lagad"
+                className="w-full aspect-4/5 object-cover rounded-2xl h-80  border-4 border-primary/20"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 rounded-full bg-linear-to-t from-background/60 to-transparent" />
+
+              {/* Floating Badge */}
+              <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float ">
+                <div className="flex items-center gap-3">
+                  <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-sm font-medium">Available for work </span>
+                </div>
+              </div>
+              {/* Stats Badge */}
+              </div>
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

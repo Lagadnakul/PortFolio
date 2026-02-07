@@ -55,6 +55,10 @@
   .glow-text {
     text-shadow: 0 0 30px color-mix(in srgb, var(--color-primary) 50%, transparent);
   }
+  .glow-border {
+    box-shadow: 0 0 20px
+    color-mix(in srgb, var(--color-primary) 5%, transparent)
+  }
 }
 
 @layer utilities {
@@ -88,6 +92,16 @@
     }
   }
 
+  @keyframes float {
+    0%,
+    100% {
+      transform: translate(0);
+    }
+    50%{
+      transform: translate(-10px);
+    }
+  }
+
   /* Draw Border Loop Animation - continuous loop */
   @keyframes draw-border-loop {
     0% {
@@ -101,6 +115,10 @@
   /* Animation Classes */
   .animate-fade-in {
     animation: fade-in 0.8s ease-out both;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
   }
 
   /* SVG Path - HIDDEN by default (opacity 0) */

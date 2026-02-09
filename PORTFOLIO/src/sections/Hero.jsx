@@ -3,8 +3,10 @@ import { Button } from "../Components/Button";
 import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
 import { ArrowRight, Github, Linkedin } from "lucide-react";
 
+const skills = ["TypeScript", "React", "Next.js", "Node.js", "Express", "Tailwind CSS", "MongoDB", "Git", "Docker", "Vercel"]
+
 // Generate dots outside component (runs once on module load)
-const generateDots = () =>
+ const generateDots = () =>
   [...Array(30)].map((_, i) => ({
     id: i,
     left: Math.random() * 100,
@@ -58,8 +60,7 @@ export const Hero = () => {
             <div className="animate-fade-in">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
                 <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                Full-Stack Developer
-                Immersive Web • Interactive Experiences • MERN
+                Full-Stack Developer • Immersive Web • Interactive Experiences • MERN
               </span>
             </div>
 
@@ -76,7 +77,7 @@ export const Hero = () => {
                 </span>
               </h1>
               <p className="text-lg text-muted-foreground max-w-lg animate-fade-in">
-                Hi, I’m Nakul Lagad — a full-stack developer working with React, Next.js, and TypeScript. I build interactive, scalable web applications focused on performance and experience.
+                Hi, I'm Nakul Lagad — a full-stack developer working with React, Next.js, and TypeScript. I build interactive, scalable web applications focused on performance and experience.
               </p>
             </div>
 
@@ -112,31 +113,42 @@ export const Hero = () => {
           <div className="relative animate-fade-in animation-delay-300">
             {/* Profile Image */}
             <div className="relative max-w-md mx-auto">
-              <div className="absolute inset-0
-              rounded-3xl bg-linear-to-br
-              from-primary/30 via transparent
-              to-primary/10 blur-2xl animate-pulse"/>
+              <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
 
-              
               <img
                 src="/Profile.img.jpeg"
                 alt="Nakul Lagad"
-                className="w-full aspect-4/5 object-cover rounded-2xl h-80  border-4 border-primary/20"
+                className="w-full aspect-4/5 object-cover rounded-2xl h-80 border-4 border-primary/20"
               />
               <div className="absolute inset-0 rounded-full bg-linear-to-t from-background/60 to-transparent" />
 
               {/* Floating Badge */}
-              <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float ">
+              <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
                 <div className="flex items-center gap-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-sm font-medium">Available for work </span>
+                  <span className="text-sm font-medium">Available for work</span>
                 </div>
               </div>
-              {/* Stats Badge */}
+            </div>
+
+            {/* Skills Section */}
+            <div className="mt-12">
+              <p className="text-sm text-muted-foreground mb-6 text-center">Technologies I work with</p>
+              <div className="relative overflow-hidden">
+                <div className="flex animate-marquee">
+                  {[...skills, ...skills].map((skill, idx) => (
+                    <div key={idx} className="shrink-0 px-8 py-4">
+                      <span className="text-xl font-semibold text-muted-foreground/50 hover:text-muted-foreground transition-colors">
+                        {skill}
+                      </span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
     </section>
   );
 };

@@ -111,6 +111,14 @@
       stroke-dashoffset: -500;
     }
   }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%)
+    }
+  }
 
   /* Animation Classes */
   .animate-fade-in {
@@ -119,6 +127,10 @@
 
   .animate-float {
     animation: float 4s ease-in-out infinite;
+  }
+
+  .animate-marquee {
+    animation: marquee 30s linear infinite;
   }
 
   /* SVG Path - HIDDEN by default (opacity 0) */

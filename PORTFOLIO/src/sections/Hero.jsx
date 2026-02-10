@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Button } from "../Components/Button";
 import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
-import { ArrowRight, Github, Linkedin } from "lucide-react";
+import { ArrowRight, Github, Linkedin, ChevronDown } from "lucide-react";
 
 const skills = ["TypeScript", "React", "Next.js", "Node.js", "Express", "Tailwind CSS", "MongoDB", "Git", "Docker", "Vercel"]
 
 // Generate dots outside component (runs once on module load)
- const generateDots = () =>
+const generateDots = () =>
   [...Array(30)].map((_, i) => ({
     id: i,
     left: Math.random() * 100,
@@ -32,7 +32,7 @@ export const Hero = () => {
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
       </div>
 
       {/* Green Dots */}
@@ -113,14 +113,14 @@ export const Hero = () => {
           <div className="relative animate-fade-in animation-delay-300">
             {/* Profile Image */}
             <div className="relative max-w-md mx-auto">
-              <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
+              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
 
               <img
                 src="/Profile.img.jpeg"
                 alt="Nakul Lagad"
                 className="w-full aspect-4/5 object-cover rounded-2xl h-80 border-4 border-primary/20"
               />
-              <div className="absolute inset-0 rounded-full bg-linear-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 rounded-full bg-gradient-to-t from-background/60 to-transparent" />
 
               {/* Floating Badge */}
               <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
@@ -148,6 +148,17 @@ export const Hero = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Scroll Down Button */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in animation-delay-600">
+        <a 
+          href="#about"
+          className="flex flex-col items-center gap-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
+        >
+          <span className="text-xs uppercase tracking-wider">Scroll</span>
+          <ChevronDown className="w-6 h-6 animate-bounce" />
+        </a>
       </div>
     </section>
   );

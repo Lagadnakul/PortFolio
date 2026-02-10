@@ -119,6 +119,15 @@
       transform: translateX(-50%)
     }
   }
+  /* Bounce Animation */
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-25%);
+    }
+  }
 
   /* Animation Classes */
   .animate-fade-in {
@@ -132,6 +141,10 @@
   .animate-marquee {
     animation: marquee 30s linear infinite;
   }
+   .animate-bounce {
+    animation: bounce 1s ease-in-out infinite;
+  }
+
 
   /* SVG Path - HIDDEN by default (opacity 0) */
   .download-cv-path {

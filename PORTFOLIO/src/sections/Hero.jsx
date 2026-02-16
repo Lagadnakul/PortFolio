@@ -32,7 +32,7 @@ export const Hero = () => {
           alt="Hero image"
           className="w-full h-full object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-linear-to-b from-background/20 via-background/80 to-background" />
       </div>
 
       {/* Green Dots */}
@@ -113,14 +113,14 @@ export const Hero = () => {
           {/* Right Column - Profile Image (Desktop) */}
           <div className="relative animate-fade-in animation-delay-300">
             <div className="relative max-w-md mx-auto">
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
+              <div className="absolute inset-0 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
 
               <img
                 src="/Profile.img.jpeg"
                 alt="Nakul Lagad"
                 className="w-full aspect-4/5 object-cover rounded-2xl h-80 border-4 border-primary/20"
               />
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-t from-background/60 to-transparent" />
 
               {/* Floating Badge */}
               <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
@@ -207,7 +207,7 @@ export const Hero = () => {
           <div className="animate-fade-in animation-delay-300 w-full max-w-xs mx-auto">
             <div className="relative">
               {/* Glow Effect */}
-              <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
+              <div className="absolute -inset-4 rounded-3xl bg-linear-to-br from-primary/30 via-transparent to-primary/10 blur-2xl animate-pulse"/>
               
               {/* Profile Image */}
               <img
@@ -217,7 +217,7 @@ export const Hero = () => {
               />
               
               {/* Overlay */}
-              <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-background/60 to-transparent" />
+              <div className="absolute inset-0 rounded-2xl bg-linear-to-t from-background/60 to-transparent" />
 
               {/* Floating Badge */}
               <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">

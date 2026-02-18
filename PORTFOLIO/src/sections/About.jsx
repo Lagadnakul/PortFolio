@@ -44,8 +44,8 @@ export const About = () => {
             </div>
 
             {/* Headline */}
-            <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100">
-              Building the future,
+           <h2 className="text-4xl md:text-5xl font-bold leading-tight animate-fade-in animation-delay-100">
+              <span className="text-primary">Building the future,</span>
               <span className="font-serif italic font-normal text-white">
                 {" "}one component at a time.
               </span>
@@ -112,7 +112,7 @@ export const About = () => {
                   }}
                 >
                   {/* Glow Effect on Hover */}
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  <div className="absolute inset-0 rounded-2xl bg-linear-to-br from-primary/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
                   {/* Icon with 3D pop effect */}
                   <div 
@@ -145,7 +145,7 @@ export const About = () => {
                   </p>
 
                   {/* Bottom accent line */}
-                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent group-hover:w-3/4 transition-all duration-500" />
+                  <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-linear-to-r from-transparent via-primary to-transparent group-hover:w-3/4 transition-all duration-500" />
                 </div>
               </div>
             ))}

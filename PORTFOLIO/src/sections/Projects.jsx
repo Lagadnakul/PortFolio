@@ -1,28 +1,29 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 
-const projects = [
-  {
+// Projects data
+const projects = [  {
+    id: 1,
     title: "Hunger Hive",
     description:
       "A full-stack food delivery platform enabling users to browse restaurants, place orders, and track deliveries in real time. Features secure authentication, dynamic cart management, order tracking, and an admin dashboard.",
-    image: "/projects/Proj-1-C.D.png",
+    image: "/projects/Proj-1F.D.png",
     techStack: ["React", "Node.js", "Express.js", "MongoDB", "JWT"],
-    liveUrl: "#",
-    githubUrl: "#",
-  },
-  {
+    liveUrl: "https://hunger-hive.vercel.app",
+    githubUrl: "https://github.com/Lagadnakul/Food-Delivery",
+  },  {
+    id: 2,
     title: "Find My Driver",
     description:
       "A driver availability management platform that connects users with available drivers based on real-time status and location data. Developed a full-stack system enabling drivers to update availability, users to search and request rides, and admins to manage platform operations.",
     image: "/projects/Proj-2 C.D.png",
     techStack: ["React", "Node.js", "Socket.io", "MongoDB", "Maps API"],
-    liveUrl: "#",
-    githubUrl: "#",
+    liveUrl: "https://car-drivers-frontend.vercel.app",
+    githubUrl: "https://github.com/Lagadnakul/Car-Drivers",
   },
 ];
 
-
+// Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -34,10 +35,10 @@ const containerVariants = {
 };
 
 const cardVariants = {
-  hidden: { 
-    opacity: 0, 
+  hidden: {
+    opacity: 0,
     y: 60,
-    scale: 0.95
+    scale: 0.95,
   },
   visible: {
     opacity: 1,
@@ -67,9 +68,8 @@ const ProjectCard = ({ project, index }) => {
             src={project.image}
             alt={project.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          {/* Overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+          />          {/* Overlay on hover */}
+          <div className="absolute inset-0 bg-linear-to-t from-background via-background/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
           
           {/* Floating project number */}
           <div className="absolute top-4 left-4 w-10 h-10 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30">
@@ -99,9 +99,7 @@ const ProjectCard = ({ project, index }) => {
                 {tech}
               </span>
             ))}
-          </div>
-
-          {/* Action Buttons */}
+          </div>          {/* Action Buttons */}
           <div className="flex items-center gap-3 pt-4">
             <motion.a
               href={project.liveUrl}
@@ -126,10 +124,8 @@ const ProjectCard = ({ project, index }) => {
               GitHub
             </motion.a>
           </div>
-        </div>
-
-        {/* Decorative gradient line at bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        </div>        {/* Decorative gradient line at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
     </motion.div>
   );

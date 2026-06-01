@@ -1,13 +1,16 @@
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import {
+  Mail,
+  MapPin,
+  Phone,
+  Send,
+  CheckCircle,
+  AlertCircle,
+  Linkedin,
+  Github,
+} from "lucide-react";
 import { useState } from "react";
-
-// Initialize EmailJS (only runs once)
-if (!window.emailJsInitialized) {
-  emailjs.init("nEY9CzlSsoH3H_ERT"); // Your public key
-  window.emailJsInitialized = true;
-}
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -18,12 +21,13 @@ const ContactForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [submitStatus, setSubmitStatus] = useState({
-    type: null, // 'success' or 'error'
+    type: null,
     message: "",
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
     setFormData((prev) => ({
       ...prev,
       [name]: value,
@@ -33,8 +37,11 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
-    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+    if (
+      !formData.name.trim() ||
+      !formData.email.trim() ||
+      !formData.message.trim()
+    ) {
       setSubmitStatus({
         type: "error",
         message: "Please fill in all fields.",
@@ -42,8 +49,8 @@ const ContactForm = () => {
       return;
     }
 
-    // Email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!emailRegex.test(formData.email)) {
       setSubmitStatus({
         type: "error",
@@ -56,16 +63,25 @@ const ContactForm = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error(
+          "EmailJS configuration is missing. Please check your environment variables."
+        );
+      }
+
       await emailjs.send(
-        "service_wlbgyer", // Your service ID
-        "template_4g86zup", // Your template ID
+        serviceId,
+        templateId,
         {
-          to_email: "your-email@gmail.com", // Replace with your email
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          reply_to: formData.email,
-        }
+        },
+        publicKey
       );
 
       setSubmitStatus({
@@ -73,22 +89,18 @@ const ContactForm = () => {
         message: "Message sent successfully! I'll get back to you soon.",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
         message: "",
       });
-
-      // Clear success message after 5 seconds
-      setTimeout(() => {
-        setSubmitStatus({ type: null, message: "" });
-      }, 5000);
     } catch (error) {
-      console.error("EmailJS Error:", error);
+      console.error("EmailJS error:", error);
+
       setSubmitStatus({
         type: "error",
-        message: "Failed to send message. Please try again.",
+        message:
+          error?.text || "Failed to send message. Please try again later.",
       });
     } finally {
       setIsLoading(false);
@@ -104,9 +116,10 @@ const ContactForm = () => {
       transition={{ duration: 0.6 }}
       className="space-y-6"
     >
-      {/* Name Field */}
       <div>
-        <label className="block text-foreground font-semibold mb-3">Name</label>
+        <label className="block text-foreground font-semibold mb-3">
+          Name
+        </label>
         <input
           type="text"
           name="name"
@@ -117,9 +130,10 @@ const ContactForm = () => {
         />
       </div>
 
-      {/* Email Field */}
       <div>
-        <label className="block text-foreground font-semibold mb-3">Email</label>
+        <label className="block text-foreground font-semibold mb-3">
+          Email
+        </label>
         <input
           type="email"
           name="email"
@@ -130,9 +144,10 @@ const ContactForm = () => {
         />
       </div>
 
-      {/* Message Field */}
       <div>
-        <label className="block text-foreground font-semibold mb-3">Message</label>
+        <label className="block text-foreground font-semibold mb-3">
+          Message
+        </label>
         <textarea
           name="message"
           value={formData.message}
@@ -143,22 +158,26 @@ const ContactForm = () => {
         />
       </div>
 
-      {/* Status Message */}
-      {submitStatus.message && (
+      {submitStatus.type && (
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`p-4 rounded-xl ${
+          className={`flex items-center gap-3 p-4 rounded-xl ${
             submitStatus.type === "success"
-              ? "bg-green-500/10 text-green-400 border border-green-500/30"
-              : "bg-red-500/10 text-red-400 border border-red-500/30"
+              ? "bg-green-500/10 border border-green-500/20 text-green-400"
+              : "bg-red-500/10 border border-red-500/20 text-red-400"
           }`}
         >
-          {submitStatus.message}
+          {submitStatus.type === "success" ? (
+            <CheckCircle className="w-5 h-5 flex-shrink-0" />
+          ) : (
+            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+          )}
+
+          <p className="text-sm">{submitStatus.message}</p>
         </motion.div>
       )}
 
-      {/* Submit Button */}
       <motion.button
         type="submit"
         disabled={isLoading}
@@ -185,14 +204,12 @@ const ContactForm = () => {
 export const Contact = () => {
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
-      {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -203,75 +220,79 @@ export const Contact = () => {
           <span className="text-primary text-sm font-medium tracking-wider uppercase">
             Get in Touch
           </span>
+
           <h2 className="text-4xl md:text-5xl font-bold">
-            <span className="text-primary">Let's build</span>
+            <span className="text-primary">Let&apos;s build</span>
             <span className="font-serif italic font-normal text-foreground">
               {" "}
               something great.
             </span>
           </h2>
+
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Send me a message and
-            let's discuss how we can work together.
+            Have a project in mind? Send me a message and let&apos;s discuss how
+            we can work together.
           </p>
         </motion.div>
 
-        {/* Main Content */}
         <div className="grid lg:grid-cols-3 gap-12 items-start max-w-6xl mx-auto">
-          {/* Contact Info - Left Side */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="space-y-8 lg:col-span-1"
-          >            {/* Email */}
+          >
             <div className="flex gap-4">
-              <div className="shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
-                  <Mail className="w-6 h-6" />
-                </div>
+              <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
+                <Mail className="w-6 h-6" />
               </div>
+
               <div>
-                <h3 className="text-lg font-semibold text-foreground">Email</h3>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Email
+                </h3>
                 <a
-                  href="mailto:your-email@gmail.com"
+                  href="mailto:nakullagad084@gmail.com"
                   className="text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
                   nakullagad084@gmail.com
                 </a>
               </div>
-            </div>            {/* Phone */}
+            </div>
+
             <div className="flex gap-4">
-              <div className="shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
-                  <Phone className="w-6 h-6" />
-                </div>
+              <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
+                <Phone className="w-6 h-6" />
               </div>
+
               <div>
-                <h3 className="text-lg font-semibold text-foreground">Phone</h3>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Phone
+                </h3>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+919328321950"
                   className="text-muted-foreground hover:text-primary transition-colors duration-300"
                 >
-                  9328321950
+                  +91 93283 21950
                 </a>
               </div>
-            </div>            {/* Location */}
+            </div>
+
             <div className="flex gap-4">
-              <div className="shrink-0">
-                <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
-                  <MapPin className="w-6 h-6" />
-                </div>
+              <div className="flex items-center justify-center h-12 w-12 rounded-xl bg-primary/10 text-primary">
+                <MapPin className="w-6 h-6" />
               </div>
+
               <div>
-                <h3 className="text-lg font-semibold text-foreground">Location</h3>
-                <p className="text-muted-foreground">India, Vadodara</p>
+                <h3 className="text-lg font-semibold text-foreground">
+                  Location
+                </h3>
+                <p className="text-muted-foreground">Vadodara, India</p>
               </div>
             </div>
           </motion.div>
 
-          {/* Contact Form - Right Side */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -283,7 +304,6 @@ export const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Bottom CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -294,6 +314,7 @@ export const Contact = () => {
           <p className="text-muted-foreground">
             Or reach out on social media:
           </p>
+
           <div className="flex items-center justify-center gap-4 mt-6">
             <a
               href="https://www.linkedin.com/in/nakul-lagad"
@@ -301,19 +322,20 @@ export const Contact = () => {
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
             >
-              <Mail className="w-6 h-6" />
+              <Linkedin className="w-6 h-6" />
             </a>
+
             <a
               href="https://github.com/Lagadnakul"
               target="_blank"
               rel="noopener noreferrer"
               className="p-3 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
             >
-              <Mail className="w-6 h-6" />
+              <Github className="w-6 h-6" />
             </a>
           </div>
         </motion.div>
       </div>
     </section>
   );
-}
+};

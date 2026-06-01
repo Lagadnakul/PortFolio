@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
-import { Button } from '../Components/Button.jsx'
-import { Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Button } from '../Components/Button.jsx';
 
 const navLinks = [
     { href: "#about", label: "About" },
     { href: "#projects", label: "Projects" },
     { href: "#experience", label: "Experience" },
-    { href: "#testimonials", label: "Testimonials" },
 ];
 
 export const Navbar = () => {

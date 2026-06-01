@@ -1,7 +1,7 @@
+import { ArrowRight, ChevronDown, Github, Linkedin } from "lucide-react";
 import { useState } from "react";
-import { Button } from "../Components/Button";
 import { AnimatedBorderButton } from "../Components/AnimatedBorderButton";
-import { ArrowRight, Github, Linkedin, ChevronDown } from "lucide-react";
+import { Button } from "../Components/Button";
 
 const skills = ["TypeScript", "React", "Next.js", "Node.js", "Express", "Tailwind CSS", "MongoDB", "Git", "Docker", "Vercel"]
 
@@ -88,14 +88,12 @@ export const Hero = () => {
                 Contact Me <ArrowRight className="w-5 h-5" />
               </Button>
               <AnimatedBorderButton />
-            </div>
-
-            {/* Social Links */}
+            </div>            {/* Social Links */}
             <div className="flex items-center gap-4 animate-fade-in animation-delay-300">
               <span className="text-sm text-muted-foreground">Follow me:</span>
               {[
-                { icon: Github, href: "https://github.com" },
-                { icon: Linkedin, href: "https://linkedin.com" },
+                { icon: Github, href: "https://github.com/Lagadnakul" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/nakul-lagad" },
               ].map((social, idx) => (
                 <a 
                   key={idx}
@@ -182,14 +180,12 @@ export const Hero = () => {
               Contact Me <ArrowRight className="w-5 h-5" />
             </Button>
             <AnimatedBorderButton />
-          </div>
-
-          {/* Social Links */}
+          </div>          {/* Social Links */}
           <div className="flex items-center gap-4 animate-fade-in animation-delay-300">
             <span className="text-sm text-muted-foreground">Follow me:</span>
             {[
-              { icon: Github, href: "https://github.com" },
-              { icon: Linkedin, href: "https://linkedin.com" },
+              { icon: Github, href: "https://github.com/Lagadnakul" },
+              { icon: Linkedin, href: "https://www.linkedin.com/in/nakul-lagad" },
             ].map((social, idx) => (
               <a 
                 key={idx}
